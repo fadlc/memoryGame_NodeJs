@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="memoryGame">
+    <head>
+        <meta charset="utf-8">
+        <title>Memory game</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="main.js"></script>
+        <link rel="stylesheet" type="text/css" href="./css/main.css">
+        <link rel="stylesheet" href="./css/fontello.css">
+    </head>
+    <body ng-controller="mainController">
+        <div class="memory_game">
+            <h1 class="game_name">Memory game</h1>
+            <p class="game_state">{{ model.state }}</p>
+            <div class="game_board"  ng-cloak>
+                <tbody>
+                    <table class="game_table">
+                        <tr class="game_row" ng-repeat="row in model.board track by $index">
+                            <td class="game_cell" ng-repeat="cell in row track by $index"  ng-click="model.fill($parent.$index, $index)">
+                               <img class="{{ cell.imgClass }}" ng-src="{{ cell.attribute }}">
+                            </td>
+                        </tr>
+                    </table>
+                </tbody>
+            </div>
+            <p class="game_attempt">Attempts number: {{ model.tried }} {{ model.average }} {{ model.timeMinutes }}</p>
+            <h3 class="game_restart" ng-click="restart()"><a href="#">Restart Game</a></h3>
+            <p class="copyright">©2018-faDLC -- Félix A. De La Cruz</p>
+        </div>
+    </body>
+    
+</html> 
